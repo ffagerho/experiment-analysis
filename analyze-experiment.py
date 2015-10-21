@@ -24,7 +24,7 @@ print "Input file: " + inputFileName
 
 print "Read CSV file..."
 
-df = pd.read_csv(inputFileName, sep='|')
+df = pd.read_csv(inputFileName, parse_dates=['datetime'], sep='|')
 
 print "Done."
 
