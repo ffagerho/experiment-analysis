@@ -12,6 +12,8 @@ matplotlib.style.use('ggplot')
 import data_helper
 import analyze_login
 import analyze_opportunities
+import analyze_polling
+import analyze_clicks
 
 # for data preprocessing:
 # cat event_dump2.txt | sed 's/[^ ]|/;/g' | sed 's/[ ]*|/|/g' | sed 's/|[ ]*/|/g' | sed 's/^ *//' | grep -v '^[-(]' | grep -v '^$' > event_dump2.csv
@@ -39,6 +41,10 @@ def main():
     plt.figure()
     ordata['or'].plot(kind="hist")
     plt.show()
+
+    print ''
+    analyze_polling.largescale_values(analyze_polling.calc_times(df))
+    analyze_clicks.click_percentages(df)
 
 def describe_data(df):
     # Describe data set
