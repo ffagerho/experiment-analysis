@@ -46,6 +46,9 @@ def main():
     analyze_polling.largescale_values(analyze_polling.calc_times(df))
     analyze_clicks.click_percentages(df)
 
+    analyze_clicks.count_reportbased_clicks(df)
+    analyze_clicks.count_userbased_clicks(df)
+
 def describe_data(df):
     # Describe data set
     print "Data set starts: {}".format(df['datetime'].min())
