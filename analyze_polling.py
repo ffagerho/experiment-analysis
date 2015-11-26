@@ -1,4 +1,8 @@
 from pandas import DataFrame
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
+
 
 def calc_times(df): # here df as returned by data_helper.import_and_clean_data function
     timearray = []
@@ -29,3 +33,20 @@ def largescale_values(df): # here df as returned by calc_times function
     print 'Minimum: '+repr(float(df.sessiontime.min()))
     print 'Maximum: '+repr(float(df.sessiontime.max()))
     print 
+
+def show_histogram(df): # here df as returned by calc_times function
+    df=group_sessiontimes(df)
+    df.sessiontime.value_counts().sort_index().plot(kind='bar')
+    ticklabels=['30 s', '65 s', '105 s', '150 s', '200 s','255 s', '315 s', '380 s','450 s', '525 s', '10-15 m', '15-30 m','30-60 m','1-24 h','24+ h']    
+    plt.title('Histogram of polling times')
+    plt.xticks(range(len(ticklabels)),ticklabels,rotation=45);
+    plt.xlabel('Time')
+    plt.ylabel('Occurances')
+    plt.show()
+
+
+def group_sessiontimes(df): # here df as returned by calc_times function
+    timebins = [600,900,1800,3600,86400,df.sessiontime.max()+1]
+    for i in range(0,len(timebins)-1):
+        df['sessiontime'].loc[(df['sessiontime']>=timebins[i]) & (df['sessiontime']<timebins[i+1])]=timebins[i]
+    return df
