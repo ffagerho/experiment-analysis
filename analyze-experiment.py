@@ -43,7 +43,10 @@ def main():
     plt.show()
 
     print ''
-    analyze_polling.largescale_values(analyze_polling.calc_times(df))
+    polltimes = analyze_polling.calc_times(df)
+    analyze_polling.largescale_values(polltimes)
+    analyze_polling.show_histogram(polltimes)
+
     analyze_clicks.click_percentages(df)
 
     analyze_clicks.count_reportbased_clicks(df)

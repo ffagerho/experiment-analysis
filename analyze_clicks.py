@@ -1,3 +1,5 @@
+from pandas import DataFrame
+
 def click_percentages(df): # show-in-service & URL mail clicks
     mail_events = df[(df.event=='LOGIN') & (df.event_target=='REPORT')]
     clickcount = float(mail_events.shape[0])
