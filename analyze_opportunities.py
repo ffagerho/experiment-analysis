@@ -21,7 +21,7 @@ def calculate_ratios(df):
         num_reports_opened = len(reports_opened)
         
         if num_reports_sent == 0:
-            this_or = 0
+            continue
         else:
             this_or = float(num_reports_opened) / float(num_reports_sent)
         
